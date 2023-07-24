@@ -1,6 +1,6 @@
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Inventory {
     private ArrayList<String> inventory;
@@ -22,14 +22,5 @@ public class Inventory {
             }
         }
     }
-    public void moveForward(){
-        System.out.println("Moving forward...");
-        System.out.println("enemy is near you try to slain it");
-        startBattle();
-    }
 
-    public void startBattle(){
-        System.out.println("Press b for battle to start or press f to flee");
-
-    }
 }
