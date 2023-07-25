@@ -1,14 +1,16 @@
 import java.util.Random;
 
-public class Combat {
-    private Player player;
-    private Enemy enemy;
+public class Combat extends Enemy{
+    private static Player player;
+    private static Enemy enemy;
+
+    public Combat(String name, int health, int damage) {
+        super(name, health, damage);
+    }
+
 
     // Constructor
-    public Combat(Player player, Enemy enemy) {
-        this.player = player;
-        this.enemy = enemy;
-    }
+
 
     public void playerFlees() {
         if (Math.random() < 0.5) { // 50% chance of escaping
@@ -30,6 +32,28 @@ public class Combat {
             System.out.println("You don't have any Healing Potions in your inventory.");
         }
     }
+
+    import java.util.Random;
+    public class Rand{
+        public static void rng() {
+            Random rand = new Random();
+            int max = 2;
+            int min = 1;
+            int randInt = rand.nextInt(max + min) + min;
+            System.out.println(randInt);
+
+            switch (randInt){
+                case 1:
+                    enemy.getName(Enemyarch);
+                    break;
+                case 2:
+                    enemy.getName(Enemyninja);
+                    break;
+                case 3:
+                    enemy.getName(Enemythief);
+            }
+        }
+
 
     public void startCombat() {
         System.out.println("Encounter: " + enemy.getName());

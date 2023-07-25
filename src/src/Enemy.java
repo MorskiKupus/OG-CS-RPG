@@ -5,7 +5,7 @@ public abstract class Enemy {
 
     public static void main(String[] args) {
         Player player = new Player("PlayerName", 100); // Assuming Player class has a constructor that takes name and health.
-        Enemy enemy = new Enemyarch(); // Creating an instance of Enemyarch
+        Enemy enemy = new Enemyarch(); // Creating an instance of Enemyarch.
 
         Combat combat = new Combat(player, enemy);
         combat.startCombat();
