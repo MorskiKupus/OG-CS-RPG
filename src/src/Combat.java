@@ -49,10 +49,10 @@ public class Combat {
                     case 1:
                         player.attack(enemy);
                         break;
-                        int playerAttackDamage = player.getDamage();
-                        enemy.reduceHealth(playerAttackDamage);
-                        System.out.println("You attacked " + enemy.getName() + " for " + playerAttackDamage + " damage.");
-                        break;
+                    int playerAttackDamage = player.getDamage();
+                    enemy.reduceHealth(playerAttackDamage);
+                    System.out.println("You attacked " + enemy.getName() + " for " + playerAttackDamage + " damage.");
+                    break;
                     case 2:
                         player.useHealingPotion();
                         break;
@@ -65,30 +65,29 @@ public class Combat {
 
 
                 if (isVictorious()) {
-                System.out.println("You defeated " + enemy.getName() + "!");
-                int coinsDropped = enemy.getCoinDrop();
-                player.addCoins(coinsDropped);
-                System.out.println("You received " + coinsDropped + " coins.");
-                break;
-            } else if (isDefeated()) {
-                System.out.println("You were defeated by " + enemy.getName() + ".");
-                break;
-            } else if (playerChoosesToFlee) {
-                System.out.println("You fled from " + enemy.getName() + ".");
-                break;
+                    System.out.println("You defeated " + enemy.getName() + "!");
+                    int coinsDropped = enemy.getCoinDrop();
+                    player.addCoins(coinsDropped);
+                    System.out.println("You received " + coinsDropped + " coins.");
+                    break;
+                } else if (isDefeated()) {
+                    System.out.println("You were defeated by " + enemy.getName() + ".");
+                    break;
+                } else if (playerChoosesToFlee) {
+                    System.out.println("You fled from " + enemy.getName() + ".");
+                    break;
+                }
             }
         }
-    }
 
-    private boolean isVictorious() {
-        // Implement logic to check if the player defeats the enemy
-        // Compare player's and enemy's health, return true if enemy defeated
-        return player.getHealth() > 0 && enemy.getHealth() <= 0;
-    }
+        private boolean isVictorious () {
+            return player.getHealth() > 0 && enemy.getHealth() <= 0;
+            System.out.println("You are victorious!");
+        }
 
-    private boolean isDefeated() {
-        // Implement logic to check if the player is defeated
-        // Compare player's and enemy's health, return true if player defeated
-        return player.getHealth() <= 0;
+        private boolean isDefeated () {
+            System.out.println("You have been defeated.");
+            return player.getHealth() <= 0;
+        }
     }
 }
