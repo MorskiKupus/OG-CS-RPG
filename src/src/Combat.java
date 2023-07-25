@@ -10,6 +10,27 @@ public class Combat {
         this.enemy = enemy;
     }
 
+    public void playerFlees() {
+        if (Math.random() < 0.5) { // 50% chance of escaping
+            System.out.println("You successfully fled from the enemy!");
+        } else {
+            System.out.println("You failed to flee and must continue the battle!");
+        }
+    }
+
+    public void useHealingPotion() {
+        int healingAmount = 10; //
+        if (inventory.contains("Healing Potion")) {
+            this.currentHealth += healingAmount;
+            if (this.currentHealth > this.maxHealth) {
+                this.currentHealth = this.maxHealth;
+            }
+            System.out.println("You used a Healing Potion and healed for " + healingAmount + " HP.");
+        } else {
+            System.out.println("You don't have any Healing Potions in your inventory.");
+        }
+    }
+
     public void startCombat() {
         System.out.println("Encounter: " + enemy.getName());
 
@@ -26,18 +47,17 @@ public class Combat {
 
                 switch (playerChoice) {
                     case 1:
-                        // Implement logic for attack action
+                        player.attack(enemy);
+                        break;
                         int playerAttackDamage = player.getDamage();
                         enemy.reduceHealth(playerAttackDamage);
                         System.out.println("You attacked " + enemy.getName() + " for " + playerAttackDamage + " damage.");
                         break;
                     case 2:
-                        // Implement logic for using an item (if applicable)
-                        // Example: player.useHealingPotion();
+                        player.useHealingPotion();
                         break;
                     case 3:
-                        // Implement logic for player fleeing (if applicable)
-                        // Example: playerFlees();
+                        playerFlees();
                         break;
                     default:
                         System.out.println("Invalid choice. Please choose again.");
