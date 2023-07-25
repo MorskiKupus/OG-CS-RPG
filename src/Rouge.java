@@ -3,6 +3,6 @@ package src;
 public class Rouge extends Stats{
     String dagger;
     int hpPot = 1;
-    String hpRing;
+    String healthPot = "Health Potion";
 }
 
