@@ -8,6 +8,6 @@ public class Enemyarch extends Enemy {
     @Override
     public int getCoinDrop() {
         // Randomize coin drop value between 5 and 10
-        return new Random().nextInt(4) +10;
+        return new Random().nextInt(6) +5;
     }
 }
