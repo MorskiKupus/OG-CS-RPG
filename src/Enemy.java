@@ -1,37 +1,26 @@
 package src;
+
 public class Enemy {
-  int atk;
+  private String name;
+  private int hp;
+  private int atk;
 
-  public int getAtk() {
-    return atk;
-  }
-
-  public void setAtk(int atk) {
-    this.atk = atk;
-  }
-
-  public void setHp(int hp) {
-    this.hp = hp;
-  }
-
-  public void setName(String name) {
+  public Enemy(String name, int hp, int atk) {
     this.name = name;
-  }
-
-  public int getHp() {
-    return hp;
+    this.hp = hp;
+    this.atk = atk;
   }
 
   public String getName() {
     return name;
   }
 
-  public Enemy(int atk, int hp, String name) {
-    this.atk = atk;
-    this.hp = hp;
-    this.name = name;
+  public int getHp() {
+    return hp;
   }
 
-  int hp;
-  String name;
+
+  public int getAtk() {
+    return atk;
+  }
 }
