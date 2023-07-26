@@ -1,16 +1,25 @@
 package src;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Inventory {
-    private ArrayList<String> inventory;
+public class Inventory implements Serializable {
+    private Map<String, Integer> inventory;
+
     public Inventory() {
-        inventory = new ArrayList<>();
+        inventory = new HashMap<>();
     }
 
     public void addItem(String item) {
-        inventory.add(item);
+        inventory.put(item, inventory.getOrDefault(item, 0) + 1);
+    }
+
+    public void removeItem(String item) {
+        int itemCount = inventory.getOrDefault(item, 0);
+        if (itemCount > 0) {
+            inventory.put(item, itemCount - 1);
+        }
     }
 
     public void displayInventory() {
@@ -18,19 +27,18 @@ public class Inventory {
             System.out.println("Inventory is empty.");
         } else {
             System.out.println("Inventory contains:");
-            for (String item : inventory) {
-                System.out.println("- " + item);
+            for (String item : inventory.keySet()) {
+                int itemCount = inventory.get(item);
+                System.out.println("- " + item + "x" + itemCount);
             }
         }
     }
-    public void moveForward(){
-        System.out.println("Moving forward...");
-        System.out.println("enemy is near you try to slain it");
-        startBattle();
+
+    public boolean containsItem(String item) {
+        return inventory.containsKey(item) && inventory.get(item) > 0;
     }
 
-    public void startBattle(){
-        System.out.println("Press b for battle to start or press f to flee");
-
+    public int getItemCount(String item) {
+        return inventory.getOrDefault(item, 0);
     }
 }

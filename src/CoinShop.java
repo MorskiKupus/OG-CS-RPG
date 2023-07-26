@@ -1,60 +1,135 @@
 package src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class CoinShop extends Inventory{
-   private ArrayList<String> shop;
-   private int price = 30;
-   int wallet = 50;
-   int healthPotionPrice = 50;
+public class CoinShop implements Serializable {
+   private List<Items> shop;
+   private int wallet = 200;
+   private int healthPotionPrice = 50;
+   private int swordUpgradePrice = 100;
+   private boolean swordUpgradeBought = false;
+   private int numHealthPotions = 2;
 
    Inventory inventory = new Inventory();
+
+
+            //ADD ITEMS HERE
    public CoinShop() {
       shop = new ArrayList<>();
+      // Add some initial items to the shop
+      shop.add(new Items("Health Potion", healthPotionPrice));
+      shop.add(new Items("Sword Upgrade", swordUpgradePrice));
    }
 
+            //OPEN SHOP
+   public void openShop() {
+      System.out.println("Welcome to the Shop!");
+      System.out.println("You have " + wallet + " coins in your wallet.");
 
-   public void addItem(String item) {
-      shop.add(item);
-   }
+      checkAndAddItemsToShop();
+      displayAvailableItems();
 
-   public void displayShop() {
-      if (shop.isEmpty()) {
-         System.out.println("shop is empty.");
-      } else {
-         System.out.println("shop contains:");
-         for (String item : shop) {
-            System.out.println("- " + item);
+      Scanner scanner = new Scanner(System.in);
+
+      boolean hasMoreItems = true;
+      while (hasMoreItems && wallet > 0) {
+         int numOfItems = Math.min(2, shop.size());
+
+         if (numOfItems > 0) {
+            System.out.println("Enter the number of the item you want to buy (or 0 to exit):");
+
+            int choice = scanner.nextInt();
+
+            if (choice >= 1 && choice <= numOfItems) {
+               Items selectedItem = shop.get(choice - 1);
+               buyItem(selectedItem);
+               removeSoldOutItems();
+            } else if (choice == 0) {
+               hasMoreItems = false;
+            } else {
+               System.out.println("Invalid choice. Please try again.");
+            }
+         } else {
+            System.out.println("Sorry, the shop is empty.");
+            hasMoreItems = false;
          }
       }
-   }
 
-   public CoinShop(ArrayList<String> shop, int price) {
-      this.shop = shop;
-      this.price = price;
-   }
-
-   public ArrayList<String> getShop() {
-      return shop;
-   }
-
-   public int getPrice() {
-      return price;
-   }
-
-   public void buyHealthPotion(){
-      System.out.println("Press 1 to buy an health potion");
-      System.out.println("Health potions cost: 50 coins you have: " + wallet +" coins in your wallet");
-      Scanner scanner = new Scanner(System.in);
-      String input = scanner.nextLine();
-      if(input.equalsIgnoreCase("1")){
-         wallet = wallet - healthPotionPrice;
-         inventory.addItem("Health Potion");
-         inventory.displayInventory();
+      if (wallet > 0) {
+         System.out.println("You have " + wallet + " coins remaining in your wallet.");
+         System.out.println("Do you want to continue shopping? (1 for Yes / 0 for No)");
+         int continueShoppingChoice = scanner.nextInt();
+         if (continueShoppingChoice == 1) {
+            openShop();
+         }
       }
-      System.out.println("you have " + wallet + " coins in your wallet");
+
+      System.out.println("Thank you for visiting the shop!");
    }
+
+   private void checkAndAddItemsToShop() {
+      boolean hasHealthPotion = false;
+      boolean hasSwordUpgrade = false;
+      for (Items item : shop) {
+         if (item.getName().equals("Health Potion")) {
+            hasHealthPotion = true;
+         } else if (item.getName().equals("Sword Upgrade")) {
+            hasSwordUpgrade = true;
+         }
+      }
+
+      if (!hasHealthPotion) {
+         shop.add(new Items("Health Potion", healthPotionPrice));
+      }
+      if (!hasSwordUpgrade) {
+         shop.add(new Items("Sword Upgrade", swordUpgradePrice));
+      }
+   }
+
+   private void displayAvailableItems() {
+      if (!shop.isEmpty()) {
+         System.out.println("Available Items:");
+         for (int i = 0; i < shop.size(); i++) {
+            Items item = shop.get(i);
+            String itemName = item.getName();
+            String itemDescription = " - Price: " + item.getPrice() + " coins";
+            if (itemName.equals("Health Potion")) {
+               itemDescription += " x" + numHealthPotions;
+            }
+            System.out.println((i + 1) + ". " + itemName + itemDescription);
+         }
+      } else {
+         System.out.println("The shop is currently empty.");
+      }
+   }
+
+   private void removeSoldOutItems() {
+      shop.removeIf(item -> (item.getName().equals("Health Potion") && numHealthPotions <= 0) ||
+              (item.getName().equals("Sword Upgrade") && swordUpgradeBought));
+   }
+
+   public void buyItem(Items item) {
+      if (wallet >= item.getPrice()) {
+         wallet -= item.getPrice();
+         System.out.println("You bought a " + item.getName() + "!");
+         if (item.getName().equals("Health Potion")) {
+            numHealthPotions--;
+            inventory.addItem("Health potion ");
+            System.out.println("Health potions remaining: " + numHealthPotions);
+         } else if (item.getName().equals("Sword Upgrade")) {
+            swordUpgradeBought = true;
+            inventory.addItem("Better sword ");
+            System.out.println("You can no longer buy the Sword Upgrade.");
+         }
+         System.out.println("You have " + wallet + " coins left.");
+      } else {
+         System.out.println("You don't have enough coins to buy the " + item.getName() + ".");
+      }
+      inventory.displayInventory();
+   }
+
+
 }
-
-

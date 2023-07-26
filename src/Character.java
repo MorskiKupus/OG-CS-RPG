@@ -5,7 +5,6 @@ public class Character {
     String Mage;
     String Rogue;
 
-
     public Character(String knight, String mage, String rogue) {
         Knight = knight;
         Mage = mage;
