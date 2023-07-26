@@ -4,9 +4,9 @@ import java.util.Random;
 public class EnemyRand {
     public String rand() {
         Enemy archer = new Enemy(3, 14, "Archer");
-        Enemy rouge = new Enemy(4, 13, "Rouge");
+        Enemy rouge = new Enemy(4, 13, "Thief");
         Enemy ninja = new Enemy(5, 15, "Ninja");
-        String encounter = null;
+        String encounter = "";
         Random rand = new Random();
         int max = 2;
         int min = 1;

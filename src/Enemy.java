@@ -32,6 +32,19 @@ public class Enemy {
     this.name = name;
   }
 
+  public int getXp() {
+    return xp;
+  }
+
+  public void setXp(int xp) {
+    this.xp = xp;
+  }
+
   int hp;
   String name;
+  int xp;
+
+  public Enemy(int xp) {
+    this.xp = xp;
+  }
 }
