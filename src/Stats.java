@@ -6,4 +6,5 @@ public class Stats {
     int def = 5;
     int hp = 20;
     int mana = 10;
+    int xp = 0;
 }
