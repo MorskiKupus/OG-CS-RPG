@@ -7,11 +7,14 @@ import java.util.Scanner;
 
 public class CoinShop implements Serializable {
    private List<Items> shop;
-   private int wallet = 200;
+   private int wallet = 300;
    private int healthPotionPrice = 50;
    private int swordUpgradePrice = 100;
    private boolean swordUpgradeBought = false;
    private int numHealthPotions = 2;
+   private int numSwordUpgrade = 1;
+   private String healthPotionDescription = " (+20 hp when used)";
+   private String swordDescription = " (+5 attack damage)";
 
    Inventory inventory = new Inventory();
 
@@ -97,9 +100,12 @@ public class CoinShop implements Serializable {
             String itemName = item.getName();
             String itemDescription = " - Price: " + item.getPrice() + " coins";
             if (itemName.equals("Health Potion")) {
-               itemDescription += " x" + numHealthPotions;
+               itemDescription += " x" + numHealthPotions + healthPotionDescription;
             }
-            System.out.println((i + 1) + ". " + itemName + itemDescription);
+            if(itemName.equals("Sword Upgrade")){
+               itemDescription += " x" + numSwordUpgrade + swordDescription;
+            }
+            System.out.println((i + 1) + ". " + itemName + itemDescription );
          }
       } else {
          System.out.println("The shop is currently empty.");
@@ -129,6 +135,10 @@ public class CoinShop implements Serializable {
          System.out.println("You don't have enough coins to buy the " + item.getName() + ".");
       }
       inventory.displayInventory();
+   }
+
+   public void itemDescription(){
+
    }
 
 
