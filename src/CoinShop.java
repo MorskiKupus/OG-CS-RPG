@@ -143,6 +143,7 @@ public class CoinShop implements Serializable {
       inventory.displayInventory();
    }
 
-
-
+   public int getWallet() {
+      return wallet;
+   }
 }
