@@ -5,15 +5,13 @@ public class Enemy {
     private int hp;
     private int atk;
 
-    private int xp;
 
-    public Enemy(String name, int hp, int atk, int xp;)
+    public Enemy(String name, int hp, int atk)
 
     {
         this.name = name;
         this.hp = hp;
         this.atk = atk;
-        this.xp = xp;
     }
 
     public String getName() {
@@ -29,7 +27,4 @@ public class Enemy {
         return atk;
     }
 
-    public int getXp() {
-        return xp;
-    }
 }
