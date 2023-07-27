@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class CoinShop extends Inventory{
    private ArrayList<String> shop;
    private int price = 30;
-   int wallet = 50;
+   int wallet = 0;
    int healthPotionPrice = 50;
 
    Inventory inventory = new Inventory();

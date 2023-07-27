@@ -1,11 +1,15 @@
 package src;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Combat combat = new Combat();
-        combat.combat();
+        Movement movement = new Movement();
+        movement.Movement();
     }
-}
+
+    }
+
+
 
 
 
