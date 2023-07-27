@@ -1,8 +1,1 @@
-  public String getEnemyDeath() {
-        return enemyDeath;
-    }
-
-    public String getPlayerDeath() {
-        return playerDeath;
-    }
 
