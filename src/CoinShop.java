@@ -15,6 +15,9 @@ public class CoinShop implements Serializable {
    private int numSwordUpgrade = 1;
    private String healthPotionDescription = " (+20 hp when used)";
    private String swordDescription = " (+5 attack damage)";
+   Knight knight = new Knight(2,5,2);
+
+
 
    Inventory inventory = new Inventory();
 
@@ -29,7 +32,7 @@ public class CoinShop implements Serializable {
 
             //OPEN SHOP
    public void openShop() {
-      System.out.println("Welcome to the Shop!");
+      System.out.println("\u001B[33mWelcome to the shop!" + "\u001B[00m");
       System.out.println("You have " + wallet + " coins in your wallet.");
 
       checkAndAddItemsToShop();
@@ -104,6 +107,7 @@ public class CoinShop implements Serializable {
             }
             if(itemName.equals("Sword Upgrade")){
                itemDescription += " x" + numSwordUpgrade + swordDescription;
+
             }
             System.out.println((i + 1) + ". " + itemName + itemDescription );
          }
@@ -128,7 +132,9 @@ public class CoinShop implements Serializable {
          } else if (item.getName().equals("Sword Upgrade")) {
             swordUpgradeBought = true;
             inventory.addItem("Better sword ");
+            int attackUpgrade = knight.getAttack() + 5;
             System.out.println("You can no longer buy the Sword Upgrade.");
+            System.out.println(attackUpgrade);
          }
          System.out.println("You have " + wallet + " coins left.");
       } else {
@@ -137,9 +143,6 @@ public class CoinShop implements Serializable {
       inventory.displayInventory();
    }
 
-   public void itemDescription(){
-
-   }
 
 
 }
