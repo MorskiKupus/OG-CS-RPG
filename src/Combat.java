@@ -1,10 +1,17 @@
-  /*public String getEnemyDeath() {
-        return enemyDeath;
-    }
+package src;
 
-    public String getPlayerDeath() {
-        return playerDeath;
-    }
+import java.util.Scanner;
+
+
+public class Combat extends EnemyRand {
+    Knight knight = new Knight(5, 5, 5, 20, 20);
+    int knightHp = knight.getHp();
+    Movement movement = new Movement();
+    int enemyHp;
+    int enemyAtk;
+
+    Inventory inventory = new Inventory();
+    CoinShop coinShop = new CoinShop();
 
     public void combat() {
         System.out.println("You encountered: " + rand());
@@ -21,7 +28,7 @@
             enemyAtk = enemy.getAtk();
             enemyHp = enemy.getHp();
         }
-        int totalDamage = 0;
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("The enemy has " + enemyHp + " hp");
         while (enemyHp > 0 && knightHp > 0) {
@@ -41,12 +48,12 @@
 
                 knightHp = knightHp - enemyAtk;
                 enemyHp = enemyHp - knight.atk;
+
                 if (enemyHp <= 0) {
                     System.out.println("The enemy has been defeated, you gained " + randGold() + " gold.");
-                    System.out.println("You have " +knightHp+ " Health");
+                    System.out.println("You have " + knightHp + " Health");
                     randGold();
-                    coinShop.wallet = coinShoQp.wallet + randGold();
-
+                    coinShop.wallet = coinShop.wallet + randGold();
                 }
                 if (knightHp <= 0) {
                     System.out.println("You have been defeated, game over.");
@@ -54,16 +61,4 @@
             }
         }
     }
-
-    public void Healing() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        if (input.equalsIgnoreCase("3") && inventory.equals("Health Potion")) {
-            int heal = knightHp + 3;
-            System.out.println("your health is now: " + heal);
-        } else {
-            System.out.println("you don't have any health potions");
-        }
-    }
 }
-*/
