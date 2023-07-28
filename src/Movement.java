@@ -3,11 +3,11 @@ package src;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Movement extends  CoinShop{
+public class Movement extends CoinShop{
+
     private static final int EncounterChance = 45;
     private static final int Treasure = 5;
 
-    CoinShop coinShop = new CoinShop();
 
     public int Flee() {
         Random random = new Random();
@@ -30,16 +30,18 @@ public class Movement extends  CoinShop{
                     Combat combat = new Combat();
                     combat.combat();
                 }
-                if (encounter.nextInt(100) < Treasure) {
+                if(encounter.nextInt(100) < Treasure){
                     Random gained = new Random();
                     int max = 300;
                     int min = 99;
-                    int gold = gained.nextInt(max - min + 1) + min;
-                    System.out.println("You found a treasure chest and gained " + gold + " gold!");
-                     wallet = wallet + gold;
+                    int gold = gained.nextInt(max + min) + min;
+                    System.out.println("You found a treasure chest and gained " +gold+ " gold!");
+                    wallet = wallet + gold;
+
                 }
-            } else {
+            } else{
                 System.out.println("Invalid input");
+                Movement();
             }
         } while (input.equalsIgnoreCase("W"));
     }
